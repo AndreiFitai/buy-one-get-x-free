@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable-next-line no-console */
 const path = require("path");
 const fs = require("fs");
 const csv = require("csvtojson");
@@ -51,7 +53,6 @@ async function processOrders() {
       (item) => `${item} ${saleItems[item]}`
     );
 
-    // eslint-disable-next-line no-console
     console.log(mapStrings.join(", "));
   });
 }
