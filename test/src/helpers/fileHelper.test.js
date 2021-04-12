@@ -12,8 +12,8 @@ const { expect } = chai;
 const TEST_INPUT_FOLDER_PATH = ["test", "testData", "input"];
 const EMPTY_INPUT_FOLDER_PATH = ["test", "testData", "emptyInput"];
 
-const ORDERS_PATH = "test/testData/input/orders.csv";
-const NO_ORDERS_PATH = "test/testData/input/noOrder.csv";
+const CSV_PATH = ["test/testData/input/orders.csv"];
+const EMPTY_CSV_PATH = ["test/testData/input/noOrder.csv"];
 
 describe("fileHelper", () => {
   describe("getInputFilePaths", () => {
@@ -22,7 +22,7 @@ describe("fileHelper", () => {
 
       expect(result).to.be.an("array");
       expect(result).to.have.lengthOf(2);
-      expect(result[1]).to.contain(ORDERS_PATH);
+      expect(result[1]).to.contain(...CSV_PATH);
     });
 
     it("throws error when no path given", async () => {
@@ -34,13 +34,13 @@ describe("fileHelper", () => {
     it("throws error when no input folder empty", async () => {
       await expect(
         getInputFilePaths(EMPTY_INPUT_FOLDER_PATH)
-      ).to.be.rejectedWith("GetInputFilePaths: No input files present");
+      ).to.be.rejectedWith("GetInputFilePaths: No input files present in: ");
     });
   });
 
   describe("parseCSVs", () => {
     it("returns array of objects from csv file", async () => {
-      const result = await parseCSVs([ORDERS_PATH]);
+      const result = await parseCSVs(CSV_PATH);
 
       expect(result).to.be.a("array");
       expect(result).to.have.lengthOf(3);
@@ -48,7 +48,7 @@ describe("fileHelper", () => {
     });
 
     it("returns empty array if order file empty", async () => {
-      const result = await parseCSVs([NO_ORDERS_PATH]);
+      const result = await parseCSVs(EMPTY_CSV_PATH);
 
       expect(result).to.be.a("array");
       expect(result).to.have.lengthOf(0);

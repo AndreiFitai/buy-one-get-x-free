@@ -6,6 +6,6 @@ const BONUS_CONFIG = {
 
 const BASE_ORDER = { heart: 0, liver: 0, lung: 0 };
 
-const INPUT_FOLDER_PATH = "input";
+const INPUT_FOLDER_PATH = ["input"];
 
 module.exports = { BONUS_CONFIG, BASE_ORDER, INPUT_FOLDER_PATH };

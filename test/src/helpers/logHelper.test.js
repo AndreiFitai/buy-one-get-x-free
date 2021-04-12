@@ -9,6 +9,7 @@ describe("logHelper", () => {
       const output = stdout.inspectSync(() => {
         logOrders(processedOrders);
       });
+
       expect(output).to.be.deep.equal([
         "heart 0, liver 2, lung 1\n",
         "heart 4, liver 0, lung 0\n",

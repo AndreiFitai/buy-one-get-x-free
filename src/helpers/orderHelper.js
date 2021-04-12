@@ -7,13 +7,14 @@ function addBonusItems(order, item, bonusRatio, bonusItemConfig) {
   }
 
   const orderWithBonus = { ...order };
-
   const bonusMultiplier = Math.floor(order[item] / bonusRatio);
   const bonusItems = Object.keys(bonusItemConfig);
+
   bonusItems.forEach((bonusItem) => {
     orderWithBonus[bonusItem] +=
       (bonusItemConfig[bonusItem] || 0) * bonusMultiplier;
   });
+
   return orderWithBonus;
 }
 
@@ -23,7 +24,7 @@ function calculateSaleUnits(orders, baseOrderConfig = [], bonusConfig) {
   }
 
   return orders.map(({ organ, cash, price, bonus_ratio }) => {
-    const baseOrder = Object.fromEntries(baseOrderConfig);
+    const baseOrder = { ...baseOrderConfig };
 
     const units = Math.floor(cash / price);
     baseOrder[organ] = units;

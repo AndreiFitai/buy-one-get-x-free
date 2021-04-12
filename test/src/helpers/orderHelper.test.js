@@ -17,11 +17,7 @@ const BONUS_CONFIG = {
   lung: { liver: 1, heart: 1 },
 };
 
-const BASE_ORDER = new Map([
-  ["heart", 0],
-  ["liver", 0],
-  ["lung", 0],
-]);
+const BASE_ORDER = { heart: 0, liver: 0, lung: 0 };
 
 describe("orderHelper", () => {
   describe("addBonusItems", () => {

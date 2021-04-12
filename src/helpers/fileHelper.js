@@ -18,7 +18,9 @@ async function getInputFilePaths(folderPath) {
   });
 
   if (!filesNames.length) {
-    throw new Error("GetInputFilePaths: No input files present");
+    throw new Error(
+      `GetInputFilePaths: No input files present in: ${inputPath}`
+    );
   }
 
   return filesNames.map((file) => path.resolve(...folderPath, file));
