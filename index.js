@@ -28,22 +28,31 @@ async function processOrders() {
 
   const allOrders = orders.flat();
 
-  return allOrders.map(({ organ, cash, price, bonus_ratio }) => {
-    const order = { heart: 0, liver: 0, lung: 0 };
+  const processedOrders = allOrders.map(
+    ({ organ, cash, price, bonus_ratio }) => {
+      const order = { heart: 0, liver: 0, lung: 0 };
 
-    const units = Math.floor(cash / price);
-    order[organ] = units;
+      const units = Math.floor(cash / price);
+      order[organ] = units;
 
-    const bonusItemConfig = bonusConfig?.[organ];
-    const bonusMultiplier = Math.floor(order[organ] / bonus_ratio);
-    const bonusItems = Object.keys(bonusItemConfig);
+      const bonusItemConfig = bonusConfig?.[organ];
+      const bonusMultiplier = Math.floor(order[organ] / bonus_ratio);
+      const bonusItems = Object.keys(bonusItemConfig);
 
-    bonusItems.forEach((bonusItem) => {
-      order[bonusItem] += (bonusItemConfig[bonusItem] || 0) * bonusMultiplier;
-    });
+      bonusItems.forEach((bonusItem) => {
+        order[bonusItem] += (bonusItemConfig[bonusItem] || 0) * bonusMultiplier;
+      });
+      return order;
+    }
+  );
 
-    console.log(order);
-    return order;
+  processedOrders.forEach((saleItems) => {
+    const mapStrings = Object.keys(saleItems).map(
+      (item) => `${item} ${saleItems[item]}`
+    );
+
+    // eslint-disable-next-line no-console
+    console.log(mapStrings.join(", "));
   });
 }
 
