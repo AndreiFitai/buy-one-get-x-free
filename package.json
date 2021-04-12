@@ -1,0 +1,30 @@
+{
+  "name": "buy-one-get-x-free",
+  "version": "1.0.0",
+  "description": "Small project to calculate an order and add items according to a \"buy 1 get x free\" promotion",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js",
+    "test": "mocha ./test --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreiFitai/buy-one-get-x-free.git"
+  },
+  "author": "Andrei-Mihai Fitai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreiFitai/buy-one-get-x-free/issues"
+  },
+  "homepage": "https://github.com/AndreiFitai/buy-one-get-x-free#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1"
+  }
+}
