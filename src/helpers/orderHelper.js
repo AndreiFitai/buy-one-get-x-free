@@ -6,7 +6,6 @@ const bonusConfig = {
 };
 
 function calculateUnits(orders) {
-  console.log("----- orders ------", orders);
   return orders.map(({ organ, cash, price, bonus_ratio }) => {
     const order = { heart: 0, liver: 0, lung: 0 };
 
