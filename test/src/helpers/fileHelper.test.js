@@ -1,7 +1,7 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const {
-  getInputFilePaths,
+  getInputCSVFilePaths,
   parseCSVs,
 } = require("../../../src/helpers/fileHelper");
 const { orders } = require("../../testData/order");
@@ -16,9 +16,9 @@ const CSV_PATH = ["test/testData/input/orders.csv"];
 const EMPTY_CSV_PATH = ["test/testData/input/noOrder.csv"];
 
 describe("fileHelper", () => {
-  describe("getInputFilePaths", () => {
+  describe("getInputCSVFilePaths", () => {
     it("returns all absolute paths to input files", async () => {
-      const result = await getInputFilePaths(TEST_INPUT_FOLDER_PATH);
+      const result = await getInputCSVFilePaths(TEST_INPUT_FOLDER_PATH);
 
       expect(result).to.be.an("array");
       expect(result).to.have.lengthOf(2);
@@ -26,15 +26,15 @@ describe("fileHelper", () => {
     });
 
     it("throws error when no path given", async () => {
-      await expect(getInputFilePaths()).to.be.rejectedWith(
-        "GetInputFilePaths: No input folder path given"
+      await expect(getInputCSVFilePaths()).to.be.rejectedWith(
+        "GetInputCSVFilePaths: No input folder path given"
       );
     });
 
     it("throws error when no input folder empty", async () => {
       await expect(
-        getInputFilePaths(EMPTY_INPUT_FOLDER_PATH)
-      ).to.be.rejectedWith("GetInputFilePaths: No input files present in: ");
+        getInputCSVFilePaths(EMPTY_INPUT_FOLDER_PATH)
+      ).to.be.rejectedWith("GetInputCSVFilePaths: No input files present in: ");
     });
   });
 

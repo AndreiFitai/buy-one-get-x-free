@@ -2,16 +2,16 @@ const path = require("path");
 const fs = require("fs");
 const csv = require("csvtojson");
 
-async function getInputFilePaths(folderPath) {
+async function getInputCSVFilePaths(folderPath) {
   if (!folderPath || !folderPath.length) {
-    throw new Error("GetInputFilePaths: No input folder path given");
+    throw new Error("getInputCSVFilePaths: No input folder path given");
   }
 
   const inputPath = path.resolve(...folderPath);
 
   const filesNames = await fs.readdirSync(inputPath, (err, files) => {
     if (err) {
-      throw new Error(`GetInputFilePaths: Unable to scan directory: ${err}`);
+      throw new Error(`getInputCSVFilePaths: Unable to scan directory: ${err}`);
     }
 
     return files;
@@ -19,11 +19,15 @@ async function getInputFilePaths(folderPath) {
 
   if (!filesNames.length) {
     throw new Error(
-      `GetInputFilePaths: No input files present in: ${inputPath}`
+      `getInputCSVFilePaths: No input files present in: ${inputPath}`
     );
   }
 
-  return filesNames.map((file) => path.resolve(...folderPath, file));
+  const csvFiles = filesNames.filter(
+    (fileName) => path.extname(fileName).toLowerCase() === ".csv"
+  );
+
+  return csvFiles.map((file) => path.resolve(...folderPath, file));
 }
 
 async function parseCSVs(filePaths) {
@@ -38,4 +42,4 @@ async function parseCSVs(filePaths) {
   return orders.flat();
 }
 
-module.exports = { getInputFilePaths, parseCSVs };
+module.exports = { getInputCSVFilePaths, parseCSVs };

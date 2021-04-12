@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha ./test --recursive"
+    "test": "mocha ./test --recursive",
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
