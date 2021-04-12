@@ -12,7 +12,7 @@ Requires npm 6.x and nodeJS v14+
 
 # About
 
-This project processes csv files found in he input folder and based on the information given it calculates the number of units to sell and what additional items a customer might receive based on the promotion configuration and bonus ratio mentioned in the order.
+This project processes csv files found in the input folder and based on the information given it calculates the number of units to sell and what additional items a customer might receive based on the promotion configuration and bonus ratio mentioned in the order.
 
 This project has 3 main parts:
 
