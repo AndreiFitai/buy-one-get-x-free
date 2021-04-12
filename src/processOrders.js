@@ -1,11 +1,12 @@
 /* eslint-disable camelcase */
-const { readCSVFilesAndParse } = require("./helpers/fileHelper");
+const { getFilePaths, getOrdersFromCSVs } = require("./helpers/fileHelper");
 const { logOrders } = require("./helpers/logHelper");
-const { calculateUnits } = require("./helpers/orderHelper");
+const { calculateSaleUnits } = require("./helpers/orderHelper");
 
 async function processOrders() {
-  const orders = await readCSVFilesAndParse();
-  const finalizedOrders = calculateUnits(orders);
+  const filePaths = await getFilePaths();
+  const allOrders = await getOrdersFromCSVs(filePaths);
+  const finalizedOrders = calculateSaleUnits(allOrders);
 
   logOrders(finalizedOrders);
 }
