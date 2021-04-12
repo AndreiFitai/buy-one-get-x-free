@@ -1,10 +1,11 @@
 const path = require("path");
 const fs = require("fs");
 const csv = require("csvtojson");
+const { INPUT_FOLDER_PATH } = require("../../config");
 
 async function readCSVFilesAndParse() {
   const filesNames = await fs.readdirSync(
-    path.resolve("input"),
+    path.resolve(INPUT_FOLDER_PATH),
     (err, files) => {
       if (err) {
         throw new Error(`GetInputFilePaths: Unable to scan directory: ${err}`);
@@ -14,7 +15,9 @@ async function readCSVFilesAndParse() {
     }
   );
 
-  const filePaths = filesNames.map((file) => path.resolve("input", file));
+  const filePaths = filesNames.map((file) =>
+    path.resolve(INPUT_FOLDER_PATH, file)
+  );
 
   const parsedCSVs = filePaths.map((filePath) => csv().fromFile(filePath));
 
