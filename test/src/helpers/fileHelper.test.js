@@ -38,7 +38,7 @@ describe("fileHelper", () => {
     });
   });
 
-  describe("getOrdersFromCSVFiles", () => {
+  describe("parseCSVs", () => {
     it("returns array of objects from csv file", async () => {
       const result = await parseCSVs([ORDERS_PATH]);
 
@@ -56,7 +56,7 @@ describe("fileHelper", () => {
 
     it("throws an error when no paths are given", async () => {
       await expect(parseCSVs([])).to.be.rejectedWith(
-        "GetOrdersFromCSVFiles: No order file paths given"
+        "ParseCSVs: No order file paths given"
       );
     });
   });

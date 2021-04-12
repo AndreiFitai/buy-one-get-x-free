@@ -26,7 +26,7 @@ async function getInputFilePaths(folderPath) {
 
 async function parseCSVs(filePaths) {
   if (!filePaths || !filePaths.length) {
-    throw new Error("GetOrdersFromCSVFiles: No order file paths given");
+    throw new Error("ParseCSVs: No order file paths given");
   }
 
   const parsedCSVs = filePaths.map((filePath) => csv().fromFile(filePath));

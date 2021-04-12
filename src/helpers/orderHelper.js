@@ -1,7 +1,11 @@
 /* eslint-disable camelcase */
-const { BASE_ORDER, BONUS_CONFIG } = require("../../config");
+/* eslint-disable camelcase */
 
 function addBonusItems(order, item, bonusRatio, bonusItemConfig) {
+  if (!bonusRatio || !bonusItemConfig) {
+    return order;
+  }
+
   const orderWithBonus = { ...order };
 
   const bonusMultiplier = Math.floor(order[item] / bonusRatio);
@@ -13,19 +17,23 @@ function addBonusItems(order, item, bonusRatio, bonusItemConfig) {
   return orderWithBonus;
 }
 
-function calculateSaleUnits(orders) {
+function calculateSaleUnits(orders, baseOrderConfig = [], bonusConfig) {
+  if (!orders.length) {
+    throw new Error("CalculateSaleUnits: No orders to process");
+  }
+
   return orders.map(({ organ, cash, price, bonus_ratio }) => {
-    const order = { ...BASE_ORDER };
+    const baseOrder = Object.fromEntries(baseOrderConfig);
 
     const units = Math.floor(cash / price);
-    order[organ] = units;
+    baseOrder[organ] = units;
 
-    if (BONUS_CONFIG?.[organ] && bonus_ratio) {
-      return addBonusItems(order, organ, bonus_ratio, BONUS_CONFIG?.[organ]);
+    if (bonusConfig?.[organ] && bonus_ratio) {
+      return addBonusItems(baseOrder, organ, bonus_ratio, bonusConfig?.[organ]);
     }
 
-    return order;
+    return baseOrder;
   });
 }
 
-module.exports = { calculateSaleUnits };
+module.exports = { calculateSaleUnits, addBonusItems };
