@@ -4,7 +4,7 @@
   "description": "Small project to calculate an order and add items according to a \"buy 1 get x free\" promotion",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
+    "start": "node index.js",
     "test": "mocha ./test --recursive"
   },
   "repository": {
@@ -26,5 +26,8 @@
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
